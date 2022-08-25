@@ -1,4 +1,4 @@
-function newImage(url, left, bottom){
+function newImage(url, left, bottom) {
     let image = document.createElement('img')
     image.src = url
     image.style.position = 'fixed'
@@ -16,7 +16,7 @@ newImage('assets/crate.png', 150, 350)
 newImage('assets/well.png', 500, 575)
 
 
-function newItem(url, left, bottom){
+function newItem(url, left, bottom) {
     let item = newImage(url, left, bottom)
     item.addEventListener('click', () => {
         item.remove()
@@ -31,7 +31,7 @@ newItem('assets/sword.png', 500, 555)
 newItem('assets/shield.png', 165, 335)
 newItem('assets/staff.png', 600, 250)
 
-function newInventory(){
+function newInventory() {
     let inventory = document.createElement('div')
     inventory.style.position = 'fixed'
     inventory.style.bottom = '0px';
@@ -49,3 +49,35 @@ function newInventory(){
 }
 
 const inventory = newInventory()
+
+//Move characters
+
+//This function is taking the image and setting it to fixed
+//Then when the user adds coordinates to the image object it moves
+
+function move(image) {
+    image.style.position = 'fixed'
+
+    function moveToCoordinates(left, bottom) {
+        image.style.left = left + 'px'
+        image.style.bottom = bottom + 'px'
+    }
+
+    return {
+        to: moveToCoordinates
+    }
+}
+
+
+let greenCharacter = newImage('assets/green-character.gif')
+move(greenCharacter)
+
+let thingThatMoveReturns = move(greenCharacter)
+thingThatMoveReturns.to
+
+thingThatMoveReturns.to(300,300)
+
+//All of the above but shorter
+move(newImage('assets/green-character.gif')).to(278, 500)
+
+
